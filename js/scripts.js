@@ -8,6 +8,9 @@ function Order(name, newSize, newIcecream, newToppings, newSauce) {
     this.newToppings = newToppings,
     this.newSauce = newSauce
 }
+Contact.prototype.yourName = function() {
+  return this.yourName;
+}
 
 Order.prototype.cost = function() {
   var dessertPrice = 0;
@@ -64,6 +67,20 @@ Order.prototype.cost = function() {
 
 // user interface logic
 $(document).ready(function() {
+  $("form#orderName").click(function(event) {
+    event.preventDefault();
+
+    var fullName = $(input#name).val();
+    var newContact = new Contact(fullName);
+
+    $("ul#orders").append("<li><span class='contact'>" + newContact.fullName() + "</span></li>");
+
+    $("input#name").val("");
+
+    $(".contact").last().click(function() {
+      $("#show-contact")
+    })
+  })
   $("#submit").submit(function() {
     event.preventDefault();
         $("#showOrders").empty();
@@ -85,25 +102,17 @@ $(document).ready(function() {
           }
             counter++
         });
-        $("#showOrders").append(total);
-        $("#showOrders").show();
-        $("#showOrders h2").text(newContact());
-        $("ul#orders").text("");
-        $("#delete").show();
       });
-      $("#delete").click(function() {
-        var checkOn = $("#output input:checked").parent();
-        checkOn.each(funciton() {
-          var index = parseInt($(this).children("input").val());
-          orders[index] = "";
-        });
-        checkOn.remove();
-      });
-    });
+      $("#output").append(total);
+      $("#output").show();
+      $("#showOrders h2").text(yourName());
+      $("ul#orders").text("");
+      $("#delete").show();
+
 
 //auto fill value of order JS code
 
-//  (function() {
+/*  (function() {
     function formatDecimal(val, n) {
       n = n || 2;
       var str = "" + Math.round(parseFloat(val) * Math.pow(10, n));
@@ -116,63 +125,64 @@ $(document).ready(function() {
 
     function getRadioVal(form, name) {
       var radios = form.elements[name];
-      var val;
+      var value;
 
       for (var i=0, len=radios.length; i<len; i++) {
         if (radios[i].checked == true) {
-          val = radios[i].value;
+          value = radios[i].value;
           break;
         }
       }
-      return val;
+      return value;
     }
 
     function getToppingsTotal(e) {
       var form = this.form;
       var val = parseFloat( form.elements['tops_tot'].value );
 
-      if ( this.checked == true ) {
+      if ( this.checked === true ) {
         val += parseFloat(this.value);
       } else {
         val -= parseFloat(this.value);
       }
 
       form.elements['tops_tot'].value = formatDecimal(val);
-      updateOrderTotal(form);
+      updateTotal(form);
     }
 
     function getSizePrice(e) {
       this.form.elements['sz_tot'].value = parseFloat(this.value);
-      updateOrderTotal(this.form);
+      updateTotal(this.form);
     }
 
-    function updateOrderTotal(form) {
+    function updateTotal(form) {
       var sz_tot = parseFloat( form.elements['sz_tot'].value );
       var tops_tot = parseFloat( form.elements['tops_tot'].value );
-      form.elements['total'].value = formatDecimal(sz_tot + tops_tot);
+      form.elements['total'].value = formatDecimal( sz_tot + tops_tot );
     }
 
     var form = document.getElementById('orderGroup');
-
     var el = document.getElementById('addedTreats');
+    var tops = el.getElementsByTagName('input');
 
-    var tops = document.getElementsByTagName('input');
-
-    for (var i = 0, len = tops.length; i < len; i++) {
+    for (var i=0, len=tops.length; i<len; i++) {
       if (tops[i].type === 'checkbox') {
-        tops[i].onclick = getToppingsTotal;
+        tops[i].onclick = updateTotal();
+          this.form.elements['total'].value = this.value;
+        }
       }
-    }
+
 
     var sz = form.elements['size'];
 
-    for (var i = 0, len = sz.length; i < len; i++) {
-      sz[i].onclick = getSizePrice;
+    for (var i=0, len = sz.length; i<len; i++) {
+      sz[i].onclick = getSizePrice();
+        this.form.elements['total'].value = this.value;
     }
 
     form.elements['sz_tot'].value = formatDecimal(parseFloat(getRadioVal(form, 'size')));
-    updateOrderTotal(form);
-
-  }); //
-
+    updateTotal(form);
+    console.log(total);
+  });
+  */
 });
