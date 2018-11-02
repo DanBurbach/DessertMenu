@@ -1,115 +1,110 @@
 //business logic
 function Name(firstName, lastName) {
-  this.firstName = firstName
-  this.lastName = lastName
-}
+  this.firstName = firstName;
+  this.lastName = lastName;
+};
+
+function Dessert(size, icecream, topping, sauce) {
+  this.size = size;
+  this.icecream = icecream;
+  this.topping = topping;
+  this.sauce = sauce;
+  this.price;
+};
+
 Name.prototype.fullName = function() {
-  return this.firstName + " " + this.lastName;
+  return "Thank you for your order " + this.firstName + " " + this.lastName + " ";
+};
+
+Dessert.prototype.calculatePrice = function() {
+  //size price
+  if (this.size === 'small size') {
+    this.price += 3.00;
+  } else if (this.size === 'medium size') {
+    this.price += 3.75;
+  } else if (this.size === 'large size') {
+    this.price += 4.25;
+  }
+  // ice cream price
+  if (this.icecream === 'Vanilla') {
+    this.price += 0.40;
+  } else if (this.icecream === 'Chocolate') {
+    this.price += 0.40;
+  } else if (this.icecream === 'PeanutbutterFudge') {
+    this.price += 0.75;
+  } else if (this.icecream === 'Coffee') {
+    this.price += 0.75;
+  } else if (this.icecream === 'Strawberry') {
+    this.price += 0.80;
+  }
+  // topping price
+  if (this.topping === 'Nuts') {
+    this.price += 0.25;
+  } else if (this.topping === 'Sprinkles') {
+    this.price += 0.15;
+  } else if (this.topping === 'Bananas') {
+    this.price += 0.50;
+  } else if (this.topping === 'CookieCrumble') {
+    this.price += 0.45;
+  } else if (this.topping === 'PeanutbutterCups') {
+    this.price += 0.45;
+  } else if (this.topping === 'GummyBears') {
+    this.price += 0.35;
+  }
+  // sauce price
+  if (this.sauce === 'ChocolateSauce') {
+    this.price += 0.50;
+  } else if (this.sauce === 'PeanutbutterSauce') {
+    this.price += 0.50;
+  } else if (this.sauce === 'CherrySauce') {
+    this.price += 0.40;
+  } else if (this.sauce === 'Marshmallow') {
+    this.price += 0.55;
+  } else if (this.sauce === 'Caramel') {
+    this.price += 0.45;
+  } else if (this.sauce === 'HotFudge') {
+    this.price += 0.75;
+  }
+}
+Dessert.prototype.shortDescription = function() {
+  return "a " + this.size + " dessert cup with " + this.icecream + ", " + this.topping + ", and " + this.sauce + " that costs $" + this.price;
 }
 
-var order = [];
-
-function Order(newSize, newIcecream, newToppings, newSauce) {
-  this.newSize = size,
-    this.newIcecream = icecream,
-    this.newToppings = toppings,
-    this.newSauce = sauce
-}
-Order.prototype.cost = function() {
-  var dessertPrice = 0;
-  if (this.newIcecream === "Vanilla" || "Chocolate") {
-    dessertPrice += 0.40;
-  }
-  if (this.newIcecream === "PeanutbutterFudge" || "Coffee") {
-    dessertPrice += 0.75;
-  }
-  if (this.newIcecream === "Strawberry") {
-    dessertPrice += 0.80;
-  }
-  if (this.newToppings === "Nuts") {
-    dessertPrice += 0.25;
-  }
-  if (this.newToppings === "Sprinkles") {
-    dessertPrice += 0.15;
-  }
-  if (this.newToppings === "Bananas") {
-    dessertPrice += 0.50;
-  }
-  if (this.newToppings === "CookieCrumble" || "PeanutbutterCups") {
-    dessertPrice += 0.45;
-  }
-  if (this.newToppings === "GummyBears") {
-    dessertPrice += 0.35;
-  }
-  if (this.newSauce === "ChocolateSauce" || "PeanutbutterSauce") {
-    dessertPrice += 0.50;
-  }
-  if (this.newSauce === "CherrySauce") {
-    dessertPrice += 0.40;
-  }
-  if (this.newSauce === "Marshmallow") {
-    dessertPrice += 0.55;
-  }
-  if (this.newSauce === "Caramel") {
-    dessertPrice += 0.45;
-  }
-  if (this.newSauce === "HotFudge") {
-    dessertPrice += 0.75;
-  }
-
-  if (this.size === "SizeSm") {
-    dessertPrice += 3.00;
-  } else if (this.size === "SizeMd") {
-    dessertPrice += 3.75;
-  } else if (this.size === "SizeLg") {
-    dessertPrice = 4.25;
-  }
-
-  return dessertPrice
+var displayDessertDetails = function() {
+  $('#dessert-list').show();
+  $('#dessert-list h2').text(newDessert.shortDescription());
 }
 
 // user interface logic
 $(document).ready(function() {
-  $("form#userName").click(function(event) {
+  $('#order-form').submit(function(event) {
     event.preventDefault();
+    var firstName = $('#input.firstName').val();
+    var lastName = $('#input.lastName').val();
+    var size = $('input:radio[name=size]:checked').val();
+    var icecream = $('input:checkbox[id=icecream]:checked').map(function() {
+      return this.value;
+    }).get();
+    var topping = $('input:checkbox[id=topping]:checked').map(function() {
+      return this.value
+    }).get();
+    var sauce = $('input:checkbox[id=sauce]:checked').map(function() {
+      return this.value
+    }).get();
+    var newDessert = new Dessert(size, icecream, topping, sauce);
+    var newName = new Name(firstName, lastName);
 
-    var inputtedFirstName = $("#input.firstName").val();
-    var inputtedLastName = $("#input.lastName")
-    order.push(newOrder);
-    order.push(newName);
+    newDessert.calculatePrice();
+    newDessert.shortDescription();
+    newName.fullName();
 
-    $("ul#orders").append("<li><span class='contact'>" + newName.fullName() + "</span></li>");
-    $("input#name").val("");
+    $('#dessert-list').append('<li><span class="dessert">' + newName.fullName() + newDessert.shortDescription() + '</span></li>');
 
-    $(".contact").last().click(function() {
-      $("#show").show();
-    })
-  })
-  $("#checkout").click(function() {
-    var inputtedSize = $("#input.newSize").val();
-    var inputtedIceCream = $("#input.newIcecream").val();
-    var inputtedToppings = $("#input.newToppings").val();
-    var inputtedSauces = $(this).find("input.newSauce").val();
-    var newOrder = new Order(inputtedSize, inputtedIceCream, inputtedToppings, inputtedSauces);
-    var newName = new Name(inputtedFirstName, inputtedLastName)
-    $("#showOrders").empty();
+    document.getElementById("order-form").reset();
 
-    $("#output").append("<h2> Here you go " + newName.name + ", here is your recent order:</h2><ul></ul>");
-    var totalCost = 0;
-    var counter = 0;
-    orders.forEach(function(order) {
-      if (order) {
-        $("#output ul").append("<li><input type='checkbox' value'" + counter + "'>One " + order.topping + " Cost for your order: $" + newOrder.cost() + ", please.</li>");
-        totalCost += order.cost();
-      }
-      counter++;
+    $(".dessert").last().click(function() {
+      $('#dessert-list').show();
+      $('#dessert-list h2').text(newDessert.shortDescription());
     });
-    $("#output").append(total);
-    $("#output").show();
-    $("#showOrders h2").text(yourName());
-    $("ul#orders").text("");
-    $("#delete").show();
-    consol.log(firstName);
-    consol.log(lastName);
   });
-})
+});

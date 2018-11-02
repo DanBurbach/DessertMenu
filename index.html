@@ -13,105 +13,82 @@
         <h2>Danno's Dessert Menu</h2>
       </div>
 
+      <form id="order-form">
       <div class="row">
         <div class="col-md-6">
-          <form id="fullOrder">
-            <div class="row">
+            <div class="row"> <!-- button selector -->
               <div class="col-md-12">
-                <span class="btn btn-primary" id="checkout">Submit Order</span>
-                <span class="btn btn-primary" id="add-order">Another Order</span>
-                <button id="delete" class="btn btn-md">Reset Selected</button>
+                <button class="btn btn-primary" type="submit">Submit Order</button>
+                <button id="delete" class="btn btn-md"onClick="window.location.reload()">Reset Order Form</button>
               </div>
             </div>
 
-            <div id="userName">
+            <!-- name entry -->
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="firstName">First Name:</label>
-                    <input type="text" class="form-control" id="firstName">
+                    <input type="text" class="form-control" name="firstName">
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="lastName">Last Name:</label>
-                    <input type="text" class="form-control" id="lastName">
+                    <input type="text" class="form-control" name="lastName">
                   </div>
                 </div>
               </div>
-            </div>
 
-            <form id="orderGroup" action="#" method="post" class="demoForm">
-              <fieldset>
-              <div id="newSize">
+              <!-- size selector -->
                 <h3>Cup size:</h3>
                 <div class="form-group">
-                  <label><input type="radio" value="3" name="size" /> Small Size </label>
-                  <label><input type="radio" value="3.75" name="size" checked="checked"/> Medium Size </label>
-                  <label><input type="radio" value="4.25" name="size" /> Large Size </label>
-                  <input type="hidden" name="sz_tot" value="0.00" />
+                  <label><input type="radio" value="small size" name="size"/> Small Size </label>
+                  <label><input type="radio" value="medium size" name="size" checked/> Medium Size </label>
+                  <label><input type="radio" value="large size" name="size"/> Large Size </label>
                 </div>
-              </div>
 
-              <div id="addedTreats">
-                <div id="newIcecream">
+                <!-- ice cream selector -->
                   <h3>Ice Cream Flavors:</h3>
                   <div class="form-group">
-                    <label><input type="checkbox" name="Vanilla" value=".40" >Vanilla</label>
-                    <label><input type="checkbox" name="Chocolate" value=".40">Chocolate</label>
-                    <label><input type="checkbox" name="PeanutbutterFudge" value=".75">Peanut Butter Fudge</label>
-                    <label><input type="checkbox" name="Coffee" value=".75">Cold Brew Coffee</label>
-                    <label><input type="checkbox" name="Strawberry" value=".80">Oregon Strawberry</label>
-                    <input type="hidden" name="tops_tot" value="0.00" />
+                    <label><input type="checkbox" value="Vanilla" name="icecream" >Vanilla</label>
+                    <label><input type="checkbox" value="Chocolate" name="icecream">Chocolate</label>
+                    <label><input type="checkbox" value="PeanutbutterFudge" name="icecream">Peanut Butter Fudge</label>
+                    <label><input type="checkbox" value="Coffee" name="icecream">Cold Brew Coffee</label>
+                    <label><input type="checkbox" value="Strawberry" name="icecream">Oregon Strawberry</label>
                   </div>
-                </div>
 
-                <div id="newToppings">
+                <!-- topping selector -->
                   <h3>Toppings:</h3>
                   <div class="form-group">
-                    <label><input type="checkbox" name="Nuts" value=".25" >Nuts</label>
-                    <label><input type="checkbox" name="Sprinkles" value=".15" >Sprinkles</label>
-                    <label><input type="checkbox" name="Bananas" value=".50" >Bananas</label>
-                    <label><input type="checkbox" name="CookieCrumble" value=".45" >Cookie Crumble</label>
-                    <label><input type="checkbox" name="PeanutbutterCups" value=".45" >Peanutbutter Cup Crumble</label>
-                    <label><input type="checkbox" name="GummyBears" value=".35" >Gummy Bears</label>
-                    <input type="hidden" name="tops_tot" value="0.00" />
+                    <label><input type="checkbox" value="Nuts" name="topping">Nuts</label>
+                    <label><input type="checkbox" value="Sprinkles" name="topping">Sprinkles</label>
+                    <label><input type="checkbox" value="Bananas" name="topping">Bananas</label>
+                    <label><input type="checkbox" value="CookieCrumble" name="topping">Cookie Crumble</label>
+                    <label><input type="checkbox" value="PeanutbutterCups" name="topping">Peanutbutter Cup Crumble</label>
+                    <label><input type="checkbox" value="GummyBears" name="topping">Gummy Bears</label>
                   </div>
-                </div>
 
-                <div id="newSauce">
+                <!-- sauce selector -->
                   <h3>Sauces:</h3>
                   <div class="form-group">
-                    <label><input type="checkbox" name="ChocolateSauce" value=".50">Chocolate Syrup</label>
-                    <label><input type="checkbox" name="PeanutbutterSauce" value=".50">Peanutbutter Sauce</label>
-                    <label><input type="checkbox" name="CherrySauce" value=".40">Cherry Sauce</label>
-                    <label><input type="checkbox" name="Marshmallow" value=".55">Marshmallow Sauce</label>
-                    <label><input type="checkbox" name="Caramel" value=".45">Caramel Sauce</label>
-                    <label><input type="checkbox" name="HotFudge" value=".75">Hot Fudge</label>
-                    <input type="hidden" name="tops_tot" value="0.00" />
+                    <label><input type="checkbox" value="ChocolateSauce" name="sauce">Chocolate Syrup</label>
+                    <label><input type="checkbox" value="PeanutbutterSauce" name="sauce">Peanutbutter Sauce</label>
+                    <label><input type="checkbox" value="CherrySauce" name="sauce">Cherry Sauce</label>
+                    <label><input type="checkbox" value="Marshmallow" name="sauce">Marshmallow Sauce</label>
+                    <label><input type="checkbox" value="Caramel" name="sauce">Caramel Sauce</label>
+                    <label><input type="checkbox" value="HotFudge" name="sauce">Hot Fudge</label>
                   </div>
-                </div>
-              </div>
-            </fieldset>
-            </form>
           </form>
-          <ul id="orders">
-          </ul>
         </div>
 
           <div class="col-md-6">
-            <div id="output">
-            <h1>Your Pie:</h1>
-          </div>
-            <div id="output">
-              <h1><span class="cost"></span></h1>
-              <p>Full Name: <span class="yourName"></span></p>
-              <p>Order: <span class="dessertPrice"></span></p>
-            </div>
+              <h3>Your Order:</h3>
+              <ul id="dessert-list">
+              </ul>
+                <h2></h2>
           </div>
         </div>
       </div>
-    </div>
   </body>
 
 </html>
