@@ -1,6 +1,6 @@
-/*#output, #orders {
+#output, #orders {
   display: none;
-}*/
+}
 
 .contact {
   cursor: pointer;
@@ -9,4 +9,10 @@
 
 .contact:hover {
   text-decoration: underline;
+}
+
+.jumbotron {
+  color: white;
+  background-image: url("https://pixabay.com/get/eb31b70e2ef51c22d2524518a33219c8b66ae3d01db0104995f2c179/ice-cream-246161_1280.jpg");
+  background-position: center;
 }
