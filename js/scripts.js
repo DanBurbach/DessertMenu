@@ -9,7 +9,7 @@ function Dessert(size, icecream, topping, sauce) {
   this.icecream = icecream;
   this.topping = topping;
   this.sauce = sauce;
-  this.price;
+  this.price
 };
 
 Name.prototype.fullName = function() {
@@ -17,13 +17,12 @@ Name.prototype.fullName = function() {
 };
 
 Dessert.prototype.calculatePrice = function() {
+  this.price = 3.75;
   //size price
   if (this.size === 'small size') {
-    this.price += 3.00;
-  } else if (this.size === 'medium size') {
-    this.price += 3.75;
+    this.price -= 0.75;
   } else if (this.size === 'large size') {
-    this.price += 4.25;
+    this.price += 0.50;
   }
   // ice cream price
   if (this.icecream === 'Vanilla') {
@@ -79,24 +78,21 @@ var displayDessertDetails = function() {
 $(document).ready(function() {
   $('#order-form').submit(function(event) {
     event.preventDefault();
-    var firstName = $('#input.firstName').val();
-    var lastName = $('#input.lastName').val();
+
+    var inputtedfirstName = $("input#firstName").val();
+    var inputtedlastName = $("input#lastName").val();
     var size = $('input:radio[name=size]:checked').val();
-    var icecream = $('input:checkbox[id=icecream]:checked').map(function() {
-      return this.value;
-    }).get();
-    var topping = $('input:checkbox[id=topping]:checked').map(function() {
-      return this.value
-    }).get();
-    var sauce = $('input:checkbox[id=sauce]:checked').map(function() {
-      return this.value
-    }).get();
+    var icecream = $('input:radio[name=icecream]:checked').val();
+    var topping = $('input:radio[name=topping]:checked').val();
+    var sauce = $('input:radio[name=sauce]:checked').val();
     var newDessert = new Dessert(size, icecream, topping, sauce);
-    var newName = new Name(firstName, lastName);
+    var newName = new Name(inputtedfirstName, inputtedlastName);
 
     newDessert.calculatePrice();
     newDessert.shortDescription();
     newName.fullName();
+    $("input#firstName").val("");
+    $("input#lastName").val("");
 
     $('#dessert-list').append('<li><span class="dessert">' + newName.fullName() + newDessert.shortDescription() + '</span></li>');
 
